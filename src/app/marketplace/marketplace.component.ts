@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from '../album.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-marketplace',
@@ -8,6 +9,9 @@ import { Album } from '../album.model';
 })
 
 export class MarketplaceComponent implements OnInit {
+
+  constructor(private router: Router) {}
+
   albums: Album[] = [
     new Album("Pulse", "Pink Floyd",
        "A live  album by the English progressive rock band originally released in 1995, on the label EMI in the United Kingdom.", 1),
@@ -23,7 +27,9 @@ export class MarketplaceComponent implements OnInit {
        "Second studio album by the English-American band, released in 1967.", 6)
   ]
 
-  constructor() { }
+  goToDetailPage(clickedAlbum: Album) {
+    this.router.navigate(['albums', clickedAlbum.id]);
+  };
 
   ngOnInit() {
   }
